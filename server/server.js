@@ -12,7 +12,7 @@ server.use(cors(), compression(), express.json());
 
 server.use('/users', usersRoute);
 
-const port = process.env.port || 6000;
+const port = process.env.port || 8080;
 
 server.listen(port, function(error){
     if(error){
