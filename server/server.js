@@ -2,11 +2,15 @@ const express = require('express');
 const cors = require('cors');
 const compression = require('compression');
 
+const usersRoute = require('./src/routes/users');
+
 const connectDB = require('./connection');
 connectDB();
 
 const server = express();
 server.use(cors(), compression(), express.json());
+
+server.use('/users', usersRoute);
 
 const port = process.env.port || 6000;
 

@@ -9,4 +9,4 @@ const connectDB = async () => {
     console.log("Connection has been made!")
 };
 
-module.exports = connectDB;
+module.exports = connectDB ;

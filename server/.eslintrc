@@ -1,0 +1,47 @@
+{
+  "parser": "@babel/eslint-parser",
+  "plugins": [],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true
+    }
+  },
+  "env": {
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "airbnb-base"
+  ],
+  "rules" : {
+    "arrow-body-style" : 1,
+    "implicit-arrow-linebreak": 0,
+    "class-methods-use-this": 0,
+    "spaced-comment": ["error", "always", { "exceptions": ["*"] }],
+    "max-len": [
+      "error", {
+        "code": 120,
+        "tabWidth": 2,
+        "ignoreTemplateLiterals": true,
+        "ignoreComments": true,
+        "ignoreStrings": true
+      }
+    ]
+  },
+  "settings": {
+    "import/resolver": {
+      "babel-module": {
+        "alias": {
+          "_models": "./src/models",
+          "_commands": "./src/commands",
+          "_services": "./src/services",
+          "_endpoints": "./src/endpoints",
+          "_assets": "./assets"
+        }
+      }
+    }
+  }
+}
