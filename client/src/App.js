@@ -1,14 +1,12 @@
 import "./App.css";
-import Authentication from "./components/authentication/Authentication";
-import Register from "./components/authentication/Register";
+import { Fragment } from "react";
+import RoutesMap from "./pages/Routes";
 
 function App() {
   return (
-    <div>
-      <Authentication />
-      <Register />
-      <h1>Hello world!</h1>
-    </div>
+    <Fragment>
+      <RoutesMap />
+    </Fragment>
   );
 }
 

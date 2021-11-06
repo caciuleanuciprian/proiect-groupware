@@ -1,5 +1,6 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Button, Grid, TextField, Container } from "@mui/material";
 
 const Authentication = () => {
   const [username, setUsername] = useState("");
@@ -43,28 +44,50 @@ const Authentication = () => {
   };
 
   return (
-    <div>
-      <Fragment>
-        <h1>Login below:</h1>
-        <form onSubmit={authenticate}>
-          <label>Username</label>
-          <input
-            onInput={handleUsername}
-            value={username}
-            placeholder="Username..."
-          ></input>
-          <label>Password</label>
-          <input
-            onInput={handlePassword}
-            value={password}
-            placeholder="Password..."
-          ></input>
-          <button onClick={authenticate} type="button">
+    <Container maxWidth="sm">
+      <form onSubmit={authenticate}>
+        <TextField
+          id="username"
+          label="Username"
+          variant="outlined"
+          margin="dense"
+          onInput={handleUsername}
+          value={username}
+          fullWidth
+        />
+        <br />
+        <TextField
+          id="password"
+          label="Password"
+          type="password"
+          variant="outlined"
+          margin="dense"
+          onInput={handlePassword}
+          value={password}
+          fullWidth
+        />
+        <br />
+        <Grid container sx={{ mt: 1, mb: 3 }}>
+          <Button
+            variant="contained"
+            size="large"
+            onClick={authenticate}
+            type="button"
+            sx={{ mr: 3 }}
+          >
             Login
-          </button>
-        </form>
-      </Fragment>
-    </div>
+          </Button>
+          <Button
+            variant="contained"
+            size="large"
+            onClick={authenticate}
+            type="button"
+          >
+            Register
+          </Button>
+        </Grid>
+      </form>
+    </Container>
   );
 };
 
