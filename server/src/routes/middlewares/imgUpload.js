@@ -10,6 +10,6 @@ const imgUpload = multer.diskStorage({
     }
 });
   
-const upload = multer({ imgUpload: imgUpload });
+const upload = multer({ imgUpload });
 
-module.exports = {imgUpload}
+module.exports = {imgUpload, upload}

@@ -2,11 +2,11 @@ const express = require('express');
 const cors = require('cors');
 const compression = require('compression');
 const bodyParser = require('body-parser');
-const fs = require('fs');
-const path = require('path');
+
 
 
 const usersRoute = require('./src/routes/users');
+const imgRoute = require('./src/routes/img');
 
 const connectDB = require('./connection');
 connectDB();
@@ -18,6 +18,8 @@ server.use(express.json());
 server.set("view engine", "ejs");
 
 server.use('/users', usersRoute);
+server.use('/img', imgRoute);
+
 
 const port = process.env.port || 8080;
 
