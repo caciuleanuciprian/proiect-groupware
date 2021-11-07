@@ -57,6 +57,12 @@ const usersSchema = new mongoose.Schema({
         default: null
     },
 
+    img:
+    {
+        data: Buffer,
+        contentType: String
+    },
+
     deletedAt:{
         type: Date,
         default: null,
