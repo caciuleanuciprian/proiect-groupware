@@ -5,14 +5,14 @@ const { upload } = require('./middlewares/imgUpload');
 const imgroute = express.Router();
 
 
-imgroute.get('/img', (req, res) => {
-    imgModule.find({}, (err, items) => {
+imgroute.get('/img/:id', (req, res) => {
+    imgModule.findById(req.params.id, (err, items) => {
         if (err) {
             console.log(err);
             res.status(500).send('An error occurred', err);
         }
         else {
-            
+
             res.json({items});
         }
     });

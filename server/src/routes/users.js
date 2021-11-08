@@ -13,11 +13,11 @@ const route = express.Router();
 const userSchema = Joi.object({
     username: Joi.string().required(),
     password: Joi.string().required(),
-    birthdate: Joi.string().required(),
-    country: Joi.string().required(),
-    city: Joi.string().required(),
-    secretQuestion: Joi.string().required(),
-    gender: Joi.string().required(),
+    // birthdate: Joi.string().required(),
+    // country: Joi.string().required(),
+    // city: Joi.string().required(),
+    // secretQuestion: Joi.string().required(),
+    // gender: Joi.string().required(),
 })
 
 route.post('/create', async (req, res) =>{ 
