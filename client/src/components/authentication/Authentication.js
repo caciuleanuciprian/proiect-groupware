@@ -25,8 +25,9 @@ const Authentication = () => {
   };
 
   const authenticate = async () => {
+    console.log(user);
     await axios.post("http://localhost:8080/users/login", user).then((res) => {
-      if (res.data.token) {
+      if (res?.data?.token) {
         afterGettingToken(res.data.token);
       } else {
         throw new Error("Something went wrong.");
@@ -80,7 +81,9 @@ const Authentication = () => {
           <Button
             variant="contained"
             size="large"
-            onClick={authenticate}
+            onClick={() => {
+              console.log("redirect to Register");
+            }}
             type="button"
           >
             Register
