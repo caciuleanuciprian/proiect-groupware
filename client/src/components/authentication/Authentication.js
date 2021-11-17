@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Button, Grid, TextField, Container } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const Authentication = () => {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState({ username, password });
@@ -44,6 +46,10 @@ const Authentication = () => {
     //redirect after login
   };
 
+  const redirectRegister = () => {
+    navigate("/register");
+  };
+
   return (
     <Container maxWidth="sm">
       <form onSubmit={authenticate}>
@@ -81,9 +87,7 @@ const Authentication = () => {
           <Button
             variant="contained"
             size="large"
-            onClick={() => {
-              console.log("redirect to Register");
-            }}
+            onClick={redirectRegister}
             type="button"
           >
             Register

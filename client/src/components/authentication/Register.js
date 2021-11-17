@@ -3,10 +3,12 @@ import axios from "axios";
 import { MenuItem, Button, Grid, TextField, Container } from "@mui/material";
 import { countries } from "./countries";
 import { genders } from "./genders";
+import { useNavigate } from "react-router-dom";
 
 // Add notification that the account was created!
 
 const Register = () => {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [birthdate, setBirthdate] = useState("");
@@ -82,6 +84,10 @@ const Register = () => {
       setGender("");
       //redirect after register
     });
+  };
+
+  const redirectToLogin = () => {
+    navigate("/login");
   };
 
   return (
@@ -190,9 +196,7 @@ const Register = () => {
             <Button
               variant="contained"
               size="large"
-              onClick={() => {
-                console.log("add redirect to login");
-              }}
+              onClick={redirectToLogin}
               type="button"
             >
               Already have an account?
