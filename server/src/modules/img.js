@@ -7,6 +7,8 @@ const imgSchema = new mongoose.Schema({
         data: Buffer,
         contentType: String
     },
+
+
     });
 
 const imgModule = mongoose.model('img', imgSchema);
