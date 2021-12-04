@@ -6,14 +6,19 @@ const jwt = require("jsonwebtoken");
 
 const route = express.Router();
 
-const userSchema = Joi.object({
+const userCreationSchema = Joi.object({
   username: Joi.string().required(),
   password: Joi.string().required(),
-  // birthdate: Joi.string().required(),
-  // country: Joi.string().required(),
-  // city: Joi.string().required(),
-  // secretQuestion: Joi.string().required(),
-  // gender: Joi.string().required(),
+  birthdate: Joi.string().required(),
+  country: Joi.string().required(),
+  city: Joi.string().required(),
+  secretQuestion: Joi.string().required(),
+  gender: Joi.string().required(),
+});
+
+const userLoginSchema = Joi.object({
+  username: Joi.string().required(),
+  password: Joi.string().required(),
 });
 
 route.post("/create", async (req, res) => {
@@ -26,7 +31,7 @@ route.post("/create", async (req, res) => {
       city,
       secretQuestion,
       gender,
-    } = await userSchema.validateAsync(req.body).catch(() => {
+    } = await userCreationSchema.validateAsync(req.body).catch(() => {
       throw new Error({ status: 400, message: "Invalid Data" });
     });
     const data = await UsersModule.create([
@@ -41,7 +46,7 @@ route.post("/create", async (req, res) => {
 
 route.post("/login", async (req, res) => {
   try {
-    const { username, password } = await userSchema
+    const { username, password } = await userLoginSchema
       .validateAsync(req.body)
       .catch(() => {
         throw new Error({ status: 400, message: "Invalid Data" });

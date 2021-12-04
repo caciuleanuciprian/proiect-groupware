@@ -43,7 +43,7 @@ const Authentication = () => {
     document.cookie = `token=${token}`;
     setUsername("");
     setPassword("");
-    //redirect after login
+    navigate("/");
   };
 
   const redirectRegister = () => {

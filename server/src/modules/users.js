@@ -10,7 +10,7 @@ const usersSchema = new mongoose.Schema({
   },
 
   birthdate: {
-    type: Date.UTC(),
+    type: Date,
   },
 
   country: {
