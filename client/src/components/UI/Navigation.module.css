@@ -1,0 +1,17 @@
+.faIcon {
+  color: #1565c0;
+  margin-right: 10px;
+}
+
+.faIconColorBlack {
+  color: black;
+  font-size: 24px;
+  width: 50px;
+  height: 50px;
+}
+
+.faIconColorWhite {
+  color: white;
+  width: 50px;
+  height: 50px;
+}
