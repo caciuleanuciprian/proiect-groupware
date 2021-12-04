@@ -16,11 +16,6 @@ const userCreationSchema = Joi.object({
   gender: Joi.string().required(),
 });
 
-const userLoginSchema = Joi.object({
-  username: Joi.string().required(),
-  password: Joi.string().required(),
-});
-
 route.post("/create", async (req, res) => {
   try {
     const {
@@ -42,6 +37,11 @@ route.post("/create", async (req, res) => {
     console.log(`ERROR status: ${status} message: ${message}`);
     res.status(status || 500).json({ message });
   }
+});
+
+const userLoginSchema = Joi.object({
+  username: Joi.string().required(),
+  password: Joi.string().required(),
 });
 
 route.post("/login", async (req, res) => {
@@ -72,14 +72,38 @@ route.get(
   })
 );
 
-const getByIdSchema = Joi.object({
-  userId: Joi.string().required(),
+const getByUsernameSchema = Joi.object({
+  username: Joi.string().required(),
 });
 
-route.get("/:userId", async (req, res) => {
-  const { userId } = await getByIdSchema.validateAsync(req.params);
-  const user = await UsersModule.findById(userId);
+route.get("/:username", async (req, res) => {
+  const { username } = await getByUsernameSchema.validateAsync(req.params);
+  const user = await UsersModule.find({username});
   res.json(user.deletedAt ? null : user);
+});
+
+const updateByIdSchema = Joi.object({
+  hobbies: Joi.string(),
+  friends: Joi.string(),
+  groups: Joi.string(),
+  interests: Joi.string(),
+});
+
+route.post("/update/:userId", async (req, res) => {
+  try {
+    const { userId } = await getByIdSchema.validateAsync(req.params);
+    const { hobbies, friends, groups, interests } =
+      await updateByIdSchema.validateAsync(req.body);
+    const updatedUser = await UsersModule.findByIdAndUpdate(
+      userId,
+      { hobbies, friends, groups, interests },
+      { new: true }
+    );
+    res.json(updatedUser[0]);
+  } catch (e) {
+    res.status(415).json({});
+    res.json({ succes: "" });
+  }
 });
 
 route.delete("/delete/:userId", async (req, res) => {
