@@ -22,6 +22,7 @@ imgroute.post("/uploadImg", upload.single("image"), (req, res, next) => {
       contentType: req.file.mimetype || "image/png",
     },
   };
+  console.log(obj);
 
   imgModule.create(obj, (err, item) => {
     if (err) {
