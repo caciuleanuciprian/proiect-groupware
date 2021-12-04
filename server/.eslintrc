@@ -16,13 +16,14 @@
     "plugin:import/warnings",
     "airbnb-base"
   ],
-  "rules" : {
-    "arrow-body-style" : 1,
+  "rules": {
+    "arrow-body-style": 1,
     "implicit-arrow-linebreak": 0,
     "class-methods-use-this": 0,
     "spaced-comment": ["error", "always", { "exceptions": ["*"] }],
     "max-len": [
-      "error", {
+      "error",
+      {
         "code": 120,
         "tabWidth": 2,
         "ignoreTemplateLiterals": true,
