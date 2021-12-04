@@ -1,8 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const compression = require("compression");
-// const bodyParser = require("body-parser");
-
+const bodyParser = require("body-parser");
 const usersRoute = require("./src/routes/users");
 const imgRoute = require("./src/routes/img");
 
@@ -11,11 +10,13 @@ connectDB();
 
 const server = express();
 server.use(cors(), compression(), express.json());
-server.use(express.urlencoded({ extended: true, limit: "50mb" }));
-// server.use(bodyParser.urlencoded(
-//   { extended:true }
-// ))
-server.use(express.json({limit: "50mb"}));
+server.use(express.json({ limit: "50mb" }));
+server.use(
+  express.urlencoded({
+    extended: true,
+    limit: "50mb",
+  })
+);
 server.set("view engine", "ejs");
 server.use("/users", usersRoute);
 server.use("/img", imgRoute);

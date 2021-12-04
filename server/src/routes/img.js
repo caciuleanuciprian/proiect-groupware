@@ -16,10 +16,11 @@ imgroute.get("/img/:id", (req, res) => {
 });
 
 imgroute.post("/uploadImg", upload.single("image"), (req, res, next) => {
+  console.log(req);
   const obj = {
     img: {
-      data: req.file.buffer,
-      contentType: req.file.mimetype || "image/png",
+      data: req?.file?.buffer,
+      contentType: req?.file?.mimetype || "image/png",
     },
   };
   console.log(obj);
