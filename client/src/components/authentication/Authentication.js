@@ -41,6 +41,7 @@ const Authentication = () => {
       headers: { Authorization: `Bearer ` + token },
     });
     document.cookie = `token=${token}`;
+    document.cookie = `username=${username}`;
     setUsername("");
     setPassword("");
     navigate("/");
