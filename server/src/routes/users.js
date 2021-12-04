@@ -78,31 +78,28 @@ const getByUsernameSchema = Joi.object({
 
 route.get("/:username", async (req, res) => {
   const { username } = await getByUsernameSchema.validateAsync(req.params);
-  const user = await UsersModule.find({username});
+  const user = await UsersModule.find({ username });
   res.json(user.deletedAt ? null : user);
 });
 
-const updateByIdSchema = Joi.object({
-  hobbies: Joi.string(),
-  friends: Joi.string(),
-  groups: Joi.string(),
-  interests: Joi.string(),
+const updateByUsernameSchema = Joi.object({
+  hobbies: Joi.string().optional(),
+  friends: Joi.string().optional(),
+  groups: Joi.string().optional(),
+  interests: Joi.string().optional(),
 });
 
-route.post("/update/:userId", async (req, res) => {
+route.post("/update/:username", async (req, res) => {
   try {
-    const { userId } = await getByIdSchema.validateAsync(req.params);
+    const { username } = await getByUsernameSchema.validateAsync(req.params);
     const { hobbies, friends, groups, interests } =
-      await updateByIdSchema.validateAsync(req.body);
-    const updatedUser = await UsersModule.findByIdAndUpdate(
-      userId,
-      { hobbies, friends, groups, interests },
-      { new: true }
-    );
+      await updateByUsernameSchema.validateAsync(req.body);
+    const updatedUser = await UsersModule.findOneAndUpdate({ username: username }, { hobbies, friends, groups, interests }, {new: true});
+    
     res.json(updatedUser[0]);
   } catch (e) {
+    console.log(e);
     res.status(415).json({});
-    res.json({ succes: "" });
   }
 });
 
