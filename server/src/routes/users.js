@@ -1,8 +1,6 @@
 const Joi = require("joi");
 const express = require("express");
-const multer = require("multer");
 const UsersModule = require("../modules/users");
-const imgModule = require("../modules/img");
 const { authMiddleware } = require("./middlewares");
 const jwt = require("jsonwebtoken");
 
@@ -40,7 +38,6 @@ route.post("/create", async (req, res) => {
     res.status(status || 500).json({ message });
   }
 });
-
 
 route.post("/login", async (req, res) => {
   try {

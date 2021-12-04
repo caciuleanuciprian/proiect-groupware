@@ -1,4 +1,4 @@
-const authMiddleware = require('./auth');
-const uploadImgMiddleware = require('./imgUpload');
+const authMiddleware = require("./auth");
+const uploadImgMiddleware = require("./imgUpload");
 
-module.exports = {authMiddleware, uploadImgMiddleware};
+module.exports = { authMiddleware, uploadImgMiddleware };
