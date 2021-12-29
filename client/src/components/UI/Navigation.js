@@ -25,7 +25,9 @@ const Navigation = (props) => {
   const navigate = useNavigate();
   const [selected, setSelected] = useState();
   const [anchorEl, setAnchorEl] = useState(null);
-  const [isLogged, setIsLogged] = useState();
+  const [isLogged, setIsLogged] = useState(
+    document.cookie !== "" ? true : false
+  );
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -37,6 +39,15 @@ const Navigation = (props) => {
     navigate("/login");
   };
 
+  const clearCookies = () => {
+    document.cookie.split(";").forEach(function (c) {
+      document.cookie = c
+        .replace(/^ +/, "")
+        .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+      window.location.reload();
+    });
+  };
+
   return (
     <Fragment>
       <Box
@@ -45,6 +56,7 @@ const Navigation = (props) => {
           alignItems: "center",
           textAlign: "center",
           justifyContent: "flex-end",
+          height: "10vh",
         }}
       >
         <ToggleButton
@@ -132,7 +144,7 @@ const Navigation = (props) => {
             Profile
           </MenuItem>
           <Divider />
-          <MenuItem>
+          <MenuItem onClick={clearCookies}>
             <FontAwesomeIcon icon={faSignOutAlt} className={classes.faIcon} />
             Logout
           </MenuItem>

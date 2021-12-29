@@ -1,50 +1,17 @@
-import React, { useState, useMemo, useEffect, useRef, Fragment } from "react";
+import React, { useState, useMemo, Fragment } from "react";
 
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 import { getDesignTokens } from "../../utils/theme";
 
 import Navigation from "../../components/UI/Navigation";
-import { Box, TextField } from "@mui/material";
-import io from "socket.io-client";
+import { Box } from "@mui/material";
+import { ChatEngine } from "react-chat-engine";
 
 const Home = () => {
-  const socket = io.connect("http://localhost:8080");
-
-  const [state, setState] = useState({ message: "", name: "" });
-  const [chat, setChat] = useState([]);
-
-  const socketRef = useRef();
-
-  useEffect(() => {
-    socketRef.current = io.connect("http://localhost:8080");
-    socketRef.current.on("message", ({ name, message }) => {
-      setChat([...chat, { name, message }]);
-    });
-    return () => socketRef.current.disconnect();
-  }, [chat]);
-
-  const onTextChange = (e) => {
-    setState({ ...state, [e.target.name]: e.target.value });
-  };
-
-  const onMessageSubmit = (e) => {
-    const { name, message } = state;
-    socketRef.current.emit("message", { name, message });
-    e.preventDefault();
-    setState({ message: "", name });
-  };
-
-  const renderChat = () => {
-    return chat.map(({ name, message }, index) => (
-      <div key={index}>
-        <h3>
-          {name}: <span>{message}</span>
-        </h3>
-      </div>
-    ));
-  };
-
+  const [username, setUsername] = useState();
+  const [password, setPassword] = useState();
+  const [isLoggedIn, setIsLoggedIn] = useState();
   const [mode, setMode] = useState("light");
   const colorMode = () => {
     if (mode === "light") {
@@ -56,6 +23,22 @@ const Home = () => {
 
   const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
   console.log(theme);
+  if (!isLoggedIn && document.cookie != "") {
+    setUsername(
+      document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("username="))
+        .split("=")[1]
+    );
+    setPassword(
+      document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("password="))
+        .split("=")[1]
+    );
+    setIsLoggedIn(true);
+  }
+  console.log(username, password);
   return (
     <Fragment>
       <ThemeProvider theme={theme}>
@@ -67,35 +50,12 @@ const Home = () => {
           }}
         >
           <Navigation onClick={colorMode} theme={theme} />
-          <h1>Home</h1>
-          <div className="card">
-            <form onSubmit={onMessageSubmit}>
-              <h1>Messenger</h1>
-              <div className="name-field">
-                <TextField
-                  name="name"
-                  onChange={(e) => onTextChange(e)}
-                  value={state.name}
-                  label="Name"
-                />
-              </div>
-              <div>
-                <TextField
-                  name="message"
-                  onChange={(e) => onTextChange(e)}
-                  value={state.message}
-                  id="outlined-multiline-static"
-                  variant="outlined"
-                  label="Message"
-                />
-              </div>
-              <button>Send Message</button>
-            </form>
-            <div className="render-chat">
-              <h1>Chat Log</h1>
-              {renderChat()}
-            </div>
-          </div>
+          <ChatEngine
+            height="90vh"
+            userName={username}
+            userSecret={password}
+            projectID="e2e7e8dc-0139-472f-a005-c17efe1f1407"
+          />
         </Box>
       </ThemeProvider>
     </Fragment>

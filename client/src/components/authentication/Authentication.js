@@ -42,6 +42,7 @@ const Authentication = () => {
     });
     document.cookie = `token=${token}`;
     document.cookie = `username=${username}`;
+    document.cookie = `password=${password}`;
     setUsername("");
     setPassword("");
     navigate("/");

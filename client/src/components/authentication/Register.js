@@ -25,6 +25,13 @@ const Register = () => {
     secretQuestion: secretQuestion,
     gender: gender,
   });
+  const [chatUser, setChatUser] = useState({
+    username: username,
+    secret: password,
+    email: `${username}@gmail.com`,
+    first_name: `${username}`,
+    last_name: `${username}`,
+  });
 
   useEffect(() => {
     handleUser();
@@ -70,6 +77,13 @@ const Register = () => {
       secretQuestion: secretQuestion,
       gender: gender,
     });
+    setChatUser({
+      username: username,
+      secret: password,
+      email: `${username}@gmail.com`,
+      first_name: `${username}`,
+      last_name: `${username}`,
+    });
   };
 
   const createAccount = () => {
@@ -84,6 +98,21 @@ const Register = () => {
       setGender("");
       //redirect after register
     });
+    axios
+      .post("https://api.chatengine.io/users/", chatUser, {
+        headers: { "PRIVATE-KEY": "e71f2693-ecf4-47f5-96c4-f2f0afc75a0e" },
+      })
+      .then((res) => {
+        console.log(chatUser);
+        setUsername("");
+        setPassword("");
+        setBirthdate("");
+        setCountry("");
+        setCity("");
+        setSecretQuestion("");
+        setGender("");
+        //redirect after register
+      });
   };
 
   const redirectToLogin = () => {
