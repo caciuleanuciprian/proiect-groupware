@@ -94,8 +94,12 @@ route.post("/update/:username", async (req, res) => {
     const { username } = await getByUsernameSchema.validateAsync(req.params);
     const { hobbies, friends, groups, interests } =
       await updateByUsernameSchema.validateAsync(req.body);
-    const updatedUser = await UsersModule.findOneAndUpdate({ username: username }, { hobbies, friends, groups, interests }, {new: true});
-    
+    const updatedUser = await UsersModule.findOneAndUpdate(
+      { username: username },
+      { hobbies, friends, groups, interests },
+      { new: true }
+    );
+
     res.json(updatedUser[0]);
   } catch (e) {
     console.log(e);
