@@ -4,6 +4,7 @@ const compression = require("compression");
 const bodyParser = require("body-parser");
 const usersRoute = require("./src/routes/users");
 const imgRoute = require("./src/routes/img");
+const path = require("path");
 
 // import mongoDB connect
 const connectDB = require("./connection");
@@ -25,6 +26,11 @@ server.use("/users", usersRoute);
 server.use("/img", imgRoute);
 
 const port = process.env.port || 8080;
+
+server.use(express.static(path.join(__dirname, 'build')));
+server.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 // Server has "started"
 server.listen(port, function (error) {
