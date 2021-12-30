@@ -27,11 +27,7 @@ server.use("/img", imgRoute);
 
 const port = process.env.port || 8080;
 
-server.use(express.static(path.join(__dirname, 'build')));
-server.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
-
+server.use(express.static(path.resolve(__dirname, "./client/build")));
 // Server has "started"
 server.listen(port, function (error) {
   if (error) {
