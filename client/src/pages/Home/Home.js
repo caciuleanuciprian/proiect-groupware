@@ -7,6 +7,7 @@ import { getDesignTokens } from "../../utils/theme";
 import Navigation from "../../components/UI/Navigation";
 import { Box } from "@mui/material";
 import { ChatEngine } from "react-chat-engine";
+import axios from "axios";
 
 const Home = () => {
   const [username, setUsername] = useState();
@@ -23,7 +24,7 @@ const Home = () => {
 
   const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
   console.log(theme);
-  if (!isLoggedIn && document.cookie != "") {
+  if (!isLoggedIn && document.cookie !== "") {
     setUsername(
       document.cookie
         .split("; ")
@@ -39,6 +40,22 @@ const Home = () => {
     setIsLoggedIn(true);
   }
   console.log(username, password);
+
+  if (isLoggedIn && document.cookie !== "") {
+    axios
+      .post(
+        "https://api.chatengine.io/chats/83088/people/",
+        { username: username },
+        {
+          headers: {
+            "Project-ID": "e2e7e8dc-0139-472f-a005-c17efe1f1407",
+            "User-Name": "admin",
+            "User-Secret": "admin",
+          },
+        }
+      )
+      .then((res) => console.log(res));
+  }
   return (
     <Fragment>
       <ThemeProvider theme={theme}>

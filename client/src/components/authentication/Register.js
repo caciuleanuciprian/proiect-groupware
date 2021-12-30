@@ -87,23 +87,9 @@ const Register = () => {
   };
 
   const createAccount = () => {
-    axios.post("http://localhost:8080/users/create", user).then((res) => {
-      console.log(user);
-      setUsername("");
-      setPassword("");
-      setBirthdate("");
-      setCountry("");
-      setCity("");
-      setSecretQuestion("");
-      setGender("");
-      //redirect after register
-    });
-    axios
-      .post("https://api.chatengine.io/users/", chatUser, {
-        headers: { "PRIVATE-KEY": "e71f2693-ecf4-47f5-96c4-f2f0afc75a0e" },
-      })
-      .then((res) => {
-        console.log(chatUser);
+    try {
+      axios.post("http://localhost:8080/users/create", user).then((res) => {
+        console.log(user);
         setUsername("");
         setPassword("");
         setBirthdate("");
@@ -113,6 +99,24 @@ const Register = () => {
         setGender("");
         //redirect after register
       });
+      axios
+        .post("https://api.chatengine.io/users/", chatUser, {
+          headers: { "PRIVATE-KEY": "e71f2693-ecf4-47f5-96c4-f2f0afc75a0e" },
+        })
+        .then((res) => {
+          console.log(chatUser);
+          setUsername("");
+          setPassword("");
+          setBirthdate("");
+          setCountry("");
+          setCity("");
+          setSecretQuestion("");
+          setGender("");
+          //redirect after register
+        });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const redirectToLogin = () => {
