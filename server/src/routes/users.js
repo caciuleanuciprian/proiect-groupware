@@ -16,8 +16,6 @@ const userCreationSchema = Joi.object({
   gender: Joi.string().required(),
 });
 
-//CREATE USER ROUTE
-
 route.post("/create", async (req, res) => {
   try {
     const {
@@ -45,8 +43,6 @@ const userLoginSchema = Joi.object({
   username: Joi.string().required(),
   password: Joi.string().required(),
 });
-
-// LOGIN ROUTE
 
 route.post("/login", async (req, res) => {
   try {
@@ -80,7 +76,6 @@ const getByUsernameSchema = Joi.object({
   username: Joi.string().required(),
 });
 
-//FIND BY USERNAME ROUTE
 route.get("/:username", async (req, res) => {
   const { username } = await getByUsernameSchema.validateAsync(req.params);
   const user = await UsersModule.find({ username });
@@ -94,7 +89,6 @@ const updateByUsernameSchema = Joi.object({
   interests: Joi.string().optional(),
 });
 
-//UPDATE BY USERNAME ROUTE
 route.post("/update/:username", async (req, res) => {
   try {
     const { username } = await getByUsernameSchema.validateAsync(req.params);
@@ -112,8 +106,6 @@ route.post("/update/:username", async (req, res) => {
     res.status(415).json({});
   }
 });
-
-//DELETE USER ROUTE
 
 route.delete("/delete/:userId", async (req, res) => {
   const { userId } = req.params;
