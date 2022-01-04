@@ -5,10 +5,19 @@
 
 .faIconColorBlack {
   color: black;
-  font-size: 18px;
+  font-size: 20px;
 }
 
 .faIconColorWhite {
   color: white;
-  font-size: 18px;
+  font-size: 20px;
+}
+
+.logo {
+  width: 200px;
+  height: 75px;
+  display: block;
+  position: absolute;
+  left: 0;
+  cursor: pointer;
 }

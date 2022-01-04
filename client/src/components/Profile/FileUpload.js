@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
 import FileBase64 from "react-file-base64";
+import { Button } from "@mui/material";
+import classes from "./FileUpload.module.css";
 
 const FileUpload = () => {
   const [selectedFile, setSelectedFile] = useState();
@@ -14,17 +16,19 @@ const FileUpload = () => {
 
   console.log(selectedFile);
   return (
-    <div>
+    <div className={classes.container}>
       <FileBase64
         type="file"
         multiple={false}
+        className={classes.fileBaseBtn}
         onDone={({ base64 }) =>
           setSelectedFile({ ...selectedFile, image: base64 })
         }
       />
-      <div>
-        <button onClick={handleSubmission}>Submit</button>
-      </div>
+      <br />
+      <Button variant="contained" size="large" onClick={handleSubmission}>
+        Submit
+      </Button>
     </div>
   );
 };

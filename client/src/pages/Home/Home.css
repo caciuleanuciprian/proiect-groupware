@@ -1,0 +1,152 @@
+@import url("https://fonts.googleapis.com/css2?family=Spline+Sans&display=swap");
+:root {
+  --bg-color: rgb(144, 202, 249);
+  --font-color: white;
+}
+
+.chat {
+  font-family: "Spline Sans", sans-serif !important;
+  transition: ease 0.5s !important;
+  color: var(--font-color) !important;
+}
+
+.chat .ce-chat-title {
+  background-color: var(--bg-color) !important;
+  color: var(--font-color) !important;
+}
+
+.chat .ce-message-form-container {
+  background-color: var(--bg-color) !important;
+  color: var(--font-color) !important;
+}
+
+.chat .quill .ql-container {
+  border: none !important;
+  border-top: 1px solid var(--font-color) !important;
+}
+
+.chat .ql-toolbar {
+  border: none !important;
+  border-top: 1px solid var(--font-color) !important;
+  border-bottom: 1px solid var(--font-color) !important;
+}
+
+.chat .ce-chat-feed-container {
+  background-color: var(--bg-color) !important;
+  color: var(--font-color) !important;
+}
+
+.chat .ce-chat-feed-column {
+  border: none !important;
+}
+
+.chat .ce-wrapper {
+  border-top: 1px solid var(--font-color) !important;
+}
+
+.chat
+  .ce-chat-engine
+  .ce-wrapper
+  .ce-settings-column
+  .ce-settings
+  .ce-settings-container
+  .ce-chat-settings-container
+  .ce-chat-title-form
+  .ce-input {
+  background-color: var(--bg-color) !important;
+  color: var(--font-color) !important;
+}
+
+.chat .ce-person-title-container {
+  background-color: var(--bg-color) !important;
+}
+
+.chat .ce-photo-title-container {
+  background-color: var(--bg-color) !important;
+}
+
+.chat #ce-options-drop-down {
+  background-color: var(--bg-color) !important;
+}
+
+.chat .ce-input {
+  border: none !important;
+}
+
+.chat .ce-settings-container div div {
+  border: none !important;
+}
+
+.chat .ce-settings-container div {
+  border: none !important;
+  border-bottom: 1px solid var(--font-color) !important;
+}
+
+.chat .ce-chat-engine .ce-wrapper .ce-settings-column .ce-settings {
+  background-color: var(--bg-color) !important;
+  font-family: "Spline Sans", sans-serif !important;
+  border-left: 1px solid var(--font-color) !important;
+}
+
+.chat .ce-chat-list .ce-chats-container .ce-chat-form-container {
+  background-color: var(--bg-color) !important;
+}
+
+.chat .ce-chat-list {
+  border-right: 1px solid var(--font-color) !important;
+}
+
+.chat .ce-chat-list .ce-chats-container {
+  background-color: var(--bg-color) !important;
+  font-family: "Spline Sans", sans-serif !important;
+  border-radius: 0 !important;
+}
+
+.chat .ce-chat-list .ce-active-chat-card {
+  background-color: var(--bg-color) !important;
+  filter: invert(1);
+}
+
+.chat .ce-chat-subtitle-text {
+  color: var(--font-color) !important;
+}
+
+.chat .ce-autocomplete-input {
+  font-family: "Spline Sans", sans-serif !important;
+}
+
+.chat .ce-autocomplete-options .ce-autocomplete-option div div {
+  color: black;
+}
+
+.chat .ce-chat-feed-container div div {
+  color: var(--font-color) !important;
+}
+
+.chat .ce-message-row {
+  padding: 0px 0px 2px 5px !important;
+}
+
+.chat .ce-message-bubble {
+  background-color: var(--bg-color) !important;
+  filter: invert(1);
+}
+
+.chat .ce-message div {
+  color: var(--font-color) !important;
+}
+
+.chat .ce-autocomplete-options .ce-avatar {
+  border: 2px solid white !important;
+  border-radius: 0px !important;
+  z-index: 5 !important;
+}
+
+.chat .ce-message-bubble-row {
+  padding: 0px 15px 2px 0px !important;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
