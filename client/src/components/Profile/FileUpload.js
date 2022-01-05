@@ -9,7 +9,10 @@ const FileUpload = () => {
 
   const handleSubmission = () => {
     axios
-      .post("http://localhost:8080/img/uploadImg", selectedFile)
+      .post(
+        "https://groupware-project.herokuapp.com/img/uploadImg",
+        selectedFile
+      )
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };

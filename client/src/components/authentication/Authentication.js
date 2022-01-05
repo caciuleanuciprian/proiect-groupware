@@ -29,7 +29,7 @@ const Authentication = () => {
   const authenticate = async () => {
     console.log(user);
     await axios
-      .post("http://localhost:8080/users/login", user)
+      .post("https://groupware-project.herokuapp.com/users/login", user)
       .then((res) => {
         if (res?.data?.token) {
           afterGettingToken(res.data.token);
@@ -44,7 +44,7 @@ const Authentication = () => {
       });
   };
   const afterGettingToken = async (token) => {
-    await axios.get("http://localhost:8080/users/app", {
+    await axios.get("https://groupware-project.herokuapp.com/users/app", {
       headers: { Authorization: `Bearer ` + token },
     });
     document.cookie = `token=${token}`;

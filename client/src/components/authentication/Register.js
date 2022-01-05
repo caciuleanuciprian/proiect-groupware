@@ -89,7 +89,7 @@ const Register = () => {
   const createAccount = () => {
     try {
       axios
-        .post("http://localhost:8080/users/create", user)
+        .post("https://groupware-project.herokuapp.com/users/create", user)
         .then((res) => {
           console.log(user);
           setUsername("");

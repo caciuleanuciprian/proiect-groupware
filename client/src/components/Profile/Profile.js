@@ -47,7 +47,7 @@ const Profile = (props) => {
     } else
       axios
         .get(
-          `http://localhost:8080/users/${
+          `https://groupware-project.herokuapp.com/users/${
             document.cookie
               .split("; ")
               .find((row) => row.startsWith("username="))
