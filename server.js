@@ -25,7 +25,7 @@ server.set("view engine", "ejs");
 server.use("/users", usersRoute);
 server.use("/img", imgRoute);
 
-const port = process.env.port || 8080;
+const port = process.env.PORT || 8080;
 
 server.use(express.static(path.resolve(__dirname, "./client/build")));
 // Server has "started"
