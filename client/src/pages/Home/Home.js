@@ -66,6 +66,7 @@ const Home = () => {
             width: "100vw",
             height: "100vh",
             bgcolor: theme.palette.background,
+            overflow: "hidden",
           }}
         >
           <Navigation mode={mode} onClick={colorMode} theme={theme} />
