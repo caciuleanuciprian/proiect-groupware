@@ -28,13 +28,20 @@ const Authentication = () => {
 
   const authenticate = async () => {
     console.log(user);
-    await axios.post("http://localhost:8080/users/login", user).then((res) => {
-      if (res?.data?.token) {
-        afterGettingToken(res.data.token);
-      } else {
-        throw new Error("Something went wrong.");
-      }
-    });
+    await axios
+      .post("http://localhost:8080/users/login", user)
+      .then((res) => {
+        if (res?.data?.token) {
+          afterGettingToken(res.data.token);
+        } else {
+          throw new Error("Something went wrong.");
+        }
+      })
+      .catch((error) => {
+        alert("Username or Password is incorrect.");
+        setUsername("");
+        setPassword("");
+      });
   };
   const afterGettingToken = async (token) => {
     await axios.get("http://localhost:8080/users/app", {

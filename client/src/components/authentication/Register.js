@@ -88,17 +88,29 @@ const Register = () => {
 
   const createAccount = () => {
     try {
-      axios.post("http://localhost:8080/users/create", user).then((res) => {
-        console.log(user);
-        setUsername("");
-        setPassword("");
-        setBirthdate("");
-        setCountry("");
-        setCity("");
-        setSecretQuestion("");
-        setGender("");
-        //redirect after register
-      });
+      axios
+        .post("http://localhost:8080/users/create", user)
+        .then((res) => {
+          console.log(user);
+          setUsername("");
+          setPassword("");
+          setBirthdate("");
+          setCountry("");
+          setCity("");
+          setSecretQuestion("");
+          setGender("");
+        })
+        .catch((error) => {
+          alert("Something went wrong.");
+          console.log(error);
+          setUsername("");
+          setPassword("");
+          setBirthdate("");
+          setCountry("");
+          setCity("");
+          setSecretQuestion("");
+          setGender("");
+        });
       axios
         .post("https://api.chatengine.io/users/", chatUser, {
           headers: { "PRIVATE-KEY": "e71f2693-ecf4-47f5-96c4-f2f0afc75a0e" },
@@ -112,8 +124,11 @@ const Register = () => {
           setCity("");
           setSecretQuestion("");
           setGender("");
-          //redirect after register
-        });
+        })
+        .then(
+          alert("Account created succesfully. You will be redirected to login.")
+        )
+        .then(navigate("/login"));
     } catch (err) {
       console.log(err);
     }

@@ -20,6 +20,7 @@ import {
   faSun,
 } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
+import Logo from "./Logo";
 
 const Navigation = (props) => {
   const navigate = useNavigate();
@@ -29,6 +30,11 @@ const Navigation = (props) => {
     document.cookie !== "" ? true : false
   );
   const open = Boolean(anchorEl);
+  let username = document.cookie
+    ?.split("; ")
+    ?.find((row) => row.startsWith("username="))
+    ?.split("=")[1];
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -37,6 +43,11 @@ const Navigation = (props) => {
   };
   const redirectToLogin = () => {
     navigate("/login");
+  };
+
+  const loggingOut = () => {
+    redirectToLogin();
+    clearCookies();
   };
 
   const clearCookies = () => {
@@ -59,6 +70,11 @@ const Navigation = (props) => {
           height: "10vh",
         }}
       >
+        <Logo
+          mode={props.mode}
+          className={classes.logo}
+          onClick={() => navigate("/")}
+        />
         <ToggleButton
           sx={{ mt: 2, border: "none" }}
           value="check"
@@ -88,7 +104,7 @@ const Navigation = (props) => {
               sx={{ ml: 2, mr: 2, mt: 2 }}
             >
               <Avatar sx={{ width: 36, height: 36, bgcolor: blue[700] }}>
-                C
+                {username.charAt(0).toUpperCase()}
               </Avatar>
             </IconButton>
           </Tooltip>
@@ -108,13 +124,14 @@ const Navigation = (props) => {
         <Menu
           anchorEl={anchorEl}
           open={open}
+          zIndex="5"
           onClick={handleClose}
           PaperProps={{
             elevation: 0,
             sx: {
+              backgroundColor: "blue",
               overflow: "visible",
               filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
-              //bgcolor: `${props.theme.palette.paper}`,
               mt: 1.5,
               "& .MuiAvatar-root": {
                 width: 32,
@@ -139,12 +156,12 @@ const Navigation = (props) => {
           transformOrigin={{ horizontal: "right", vertical: "top" }}
           anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         >
-          <MenuItem>
+          <MenuItem onClick={() => navigate("/profile")}>
             <FontAwesomeIcon icon={faUserAlt} className={classes.faIcon} />
             Profile
           </MenuItem>
           <Divider />
-          <MenuItem onClick={clearCookies}>
+          <MenuItem onClick={loggingOut}>
             <FontAwesomeIcon icon={faSignOutAlt} className={classes.faIcon} />
             Logout
           </MenuItem>
