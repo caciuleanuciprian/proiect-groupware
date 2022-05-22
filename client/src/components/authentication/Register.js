@@ -25,13 +25,6 @@ const Register = () => {
     secretQuestion: secretQuestion,
     gender: gender,
   });
-  const [chatUser, setChatUser] = useState({
-    username: username,
-    secret: password,
-    email: `${username}@gmail.com`,
-    first_name: `${username}`,
-    last_name: `${username}`,
-  });
 
   useEffect(() => {
     handleUser();
@@ -77,13 +70,6 @@ const Register = () => {
       secretQuestion: secretQuestion,
       gender: gender,
     });
-    setChatUser({
-      username: username,
-      secret: password,
-      email: `${username}@gmail.com`,
-      first_name: `${username}`,
-      last_name: `${username}`,
-    });
   };
 
   const createAccount = () => {
@@ -91,32 +77,6 @@ const Register = () => {
       axios
         .post("http://localhost:8080/users/create", user)
         .then((res) => {
-          console.log(user);
-          setUsername("");
-          setPassword("");
-          setBirthdate("");
-          setCountry("");
-          setCity("");
-          setSecretQuestion("");
-          setGender("");
-        })
-        .catch((error) => {
-          alert("Something went wrong.");
-          console.log(error);
-          setUsername("");
-          setPassword("");
-          setBirthdate("");
-          setCountry("");
-          setCity("");
-          setSecretQuestion("");
-          setGender("");
-        });
-      axios
-        .post("https://api.chatengine.io/users/", chatUser, {
-          headers: { "PRIVATE-KEY": "e71f2693-ecf4-47f5-96c4-f2f0afc75a0e" },
-        })
-        .then((res) => {
-          console.log(chatUser);
           setUsername("");
           setPassword("");
           setBirthdate("");
@@ -130,7 +90,14 @@ const Register = () => {
         )
         .then(navigate("/login"));
     } catch (err) {
-      console.log(err);
+      alert("Something went wrong.");
+      setUsername("");
+      setPassword("");
+      setBirthdate("");
+      setCountry("");
+      setCity("");
+      setSecretQuestion("");
+      setGender("");
     }
   };
 

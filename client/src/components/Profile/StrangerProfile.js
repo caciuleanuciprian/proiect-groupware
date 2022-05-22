@@ -9,12 +9,12 @@ import {
   Typography,
 } from "@mui/material";
 import axios from "axios";
-import FileUpload from "./FileUpload";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
+import { useLocation } from "react-router-dom";
 import { getDesignTokens } from "../../utils/theme";
 
-const Profile = (props) => {
+const StrangerProfile = (props) => {
   const [mode, setMode] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
   );
@@ -29,6 +29,8 @@ const Profile = (props) => {
 
   const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
 
+  const location = useLocation();
+
   const [userInfo, setUserInfo] = useState();
   if (userInfo === undefined) {
     if (
@@ -40,14 +42,7 @@ const Profile = (props) => {
       return <h1>In order to view this page you must be authenticated.</h1>;
     } else
       axios
-        .get(
-          `http://localhost:8080/users/${
-            document.cookie
-              .split("; ")
-              .find((row) => row.startsWith("username="))
-              .split("=")[1]
-          }`
-        )
+        .get(`http://localhost:8080/users/${location.state}`)
         .then((res) => setUserInfo(res.data[0]));
   }
   return (
@@ -87,7 +82,6 @@ const Profile = (props) => {
               <Typography variant="h3" color={theme.palette.text.primary}>
                 Profile picture
               </Typography>
-              <FileUpload />
             </Box>
             <Box
               padding="10px"
@@ -114,6 +108,7 @@ const Profile = (props) => {
                       margin="dense"
                       value={userInfo ? userInfo.username : ""}
                       fullWidth
+                      disabled
                     />
                     <br />
                     <TextField
@@ -124,6 +119,7 @@ const Profile = (props) => {
                       margin="dense"
                       value={userInfo ? userInfo.password : ""}
                       fullWidth
+                      disabled
                     />
                     <br />
                     <TextField
@@ -133,6 +129,7 @@ const Profile = (props) => {
                       margin="dense"
                       value={userInfo ? userInfo.country : ""}
                       fullWidth
+                      disabled
                     />
                     <br />
                     <TextField
@@ -142,6 +139,7 @@ const Profile = (props) => {
                       margin="dense"
                       value={userInfo ? userInfo.city : ""}
                       fullWidth
+                      disabled
                     />
                     <br />
                     <TextField
@@ -151,6 +149,7 @@ const Profile = (props) => {
                       margin="dense"
                       value={userInfo ? userInfo.secretQuestion : ""}
                       fullWidth
+                      disabled
                     />
                     <br />
                     <TextField
@@ -160,6 +159,7 @@ const Profile = (props) => {
                       margin="dense"
                       value={userInfo ? userInfo.gender : ""}
                       fullWidth
+                      disabled
                     />
                     <br />
                     <TextField
@@ -169,6 +169,7 @@ const Profile = (props) => {
                       margin="dense"
                       value={userInfo ? userInfo.hobbies : ""}
                       fullWidth
+                      disabled
                     />
                     <br />
                     <TextField
@@ -178,6 +179,7 @@ const Profile = (props) => {
                       margin="dense"
                       value={userInfo ? userInfo.friends : ""}
                       fullWidth
+                      disabled
                     />
                     <br />
                     <TextField
@@ -187,6 +189,7 @@ const Profile = (props) => {
                       margin="dense"
                       value={userInfo ? userInfo.groups : ""}
                       fullWidth
+                      disabled
                     />
                     <br />
                     <TextField
@@ -196,6 +199,7 @@ const Profile = (props) => {
                       margin="dense"
                       value={userInfo ? userInfo.interests : ""}
                       fullWidth
+                      disabled
                     />
                     <br />
                     <Grid container sx={{ mt: 1, mb: 3 }}>
@@ -205,10 +209,10 @@ const Profile = (props) => {
                         type="button"
                         sx={{ mr: 3 }}
                       >
-                        Save Changes
+                        Add Friend
                       </Button>
                       <Button variant="contained" size="large" type="button">
-                        Delete Profile
+                        Follow
                       </Button>
                     </Grid>
                   </Fragment>
@@ -224,4 +228,4 @@ const Profile = (props) => {
   );
 };
 
-export default Profile;
+export default StrangerProfile;

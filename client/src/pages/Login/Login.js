@@ -1,4 +1,4 @@
-import Authentication from "../../components/authentication/Authentication";
+import Authentication from "../../components/Authentication/Authentication";
 import Logo from "../../components/UI/Logo";
 import classes from "./Login.module.css";
 import ParticlesComponent from "../../components/UI/ParticlesComponent";

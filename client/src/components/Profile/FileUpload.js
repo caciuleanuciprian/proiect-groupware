@@ -10,11 +10,10 @@ const FileUpload = () => {
   const handleSubmission = () => {
     axios
       .post("http://localhost:8080/img/uploadImg", selectedFile)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .then((res) => res)
+      .catch((err) => alert("Something went wrong."));
   };
 
-  console.log(selectedFile);
   return (
     <div className={classes.container}>
       <FileBase64

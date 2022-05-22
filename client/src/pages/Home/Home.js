@@ -4,15 +4,17 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 import { getDesignTokens } from "../../utils/theme";
 
+import UsersList from "../../components/Users/UsersList";
+
 import Navigation from "../../components/UI/Navigation";
 import { Box } from "@mui/material";
-import { ChatEngine } from "react-chat-engine";
-import axios from "axios";
 
 import "./Home.css";
 
 const Home = () => {
+  // eslint-disable-next-line no-unused-vars
   const [username, setUsername] = useState();
+  // eslint-disable-next-line no-unused-vars
   const [password, setPassword] = useState();
   const [isLoggedIn, setIsLoggedIn] = useState();
   const [mode, setMode] = useState(
@@ -43,21 +45,6 @@ const Home = () => {
     setIsLoggedIn(true);
   }
 
-  if (isLoggedIn && document.cookie !== "") {
-    axios
-      .post(
-        "https://api.chatengine.io/chats/83088/people/",
-        { username: username },
-        {
-          headers: {
-            "Project-ID": "e2e7e8dc-0139-472f-a005-c17efe1f1407",
-            "User-Name": "admin",
-            "User-Secret": "admin",
-          },
-        }
-      )
-      .then((res) => console.log(res));
-  }
   return (
     <Fragment>
       <ThemeProvider theme={theme}>
@@ -81,13 +68,9 @@ const Home = () => {
                 : { "--bg-color": "rgb(26,35,126)", "--font-color": "white" }
             }
           >
-            <ChatEngine
-              height="90vh"
-              userName={username}
-              userSecret={password}
-              projectID="e2e7e8dc-0139-472f-a005-c17efe1f1407"
-            />
+            Aici era un chat dar nu mai este.
           </div>
+          <UsersList />
         </Box>
       </ThemeProvider>
     </Fragment>

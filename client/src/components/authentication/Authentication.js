@@ -27,7 +27,6 @@ const Authentication = () => {
   };
 
   const authenticate = async () => {
-    console.log(user);
     await axios
       .post("http://localhost:8080/users/login", user)
       .then((res) => {
