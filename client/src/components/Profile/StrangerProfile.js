@@ -11,6 +11,8 @@ import {
 import axios from "axios";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
+import styles from "./Profile.module.css";
+
 import { useLocation } from "react-router-dom";
 import { getDesignTokens } from "../../utils/theme";
 
@@ -51,7 +53,7 @@ const StrangerProfile = (props) => {
         <Box
           sx={{
             width: "100vw",
-            height: "100vh",
+            minHeight: "100vh",
             bgcolor: theme.palette.background,
           }}
         >
@@ -59,6 +61,7 @@ const StrangerProfile = (props) => {
           <Container
             minWidth="600px"
             minHeight="600px"
+            className={styles.container}
             sx={{
               display: "flex",
               justifyContent: "center",
@@ -72,6 +75,7 @@ const StrangerProfile = (props) => {
               width="50%"
               height="100%"
               minHeight="250px"
+              className={styles.box}
               sx={{
                 display: "flex",
                 flexDirection: "column",
@@ -88,6 +92,7 @@ const StrangerProfile = (props) => {
               width="50%"
               height="50%"
               minHeight="250px"
+              className={styles.box}
               sx={{
                 display: "flex",
                 flexDirection: "column",

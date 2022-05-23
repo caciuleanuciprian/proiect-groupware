@@ -51,9 +51,8 @@ const Home = () => {
         <Box
           sx={{
             width: "100vw",
-            height: "100vh",
+            minHeight: "100vh",
             bgcolor: theme.palette.background,
-            overflow: "hidden",
           }}
         >
           <Navigation mode={mode} onClick={colorMode} theme={theme} />
@@ -70,7 +69,7 @@ const Home = () => {
           >
             Aici era un chat dar nu mai este.
           </div>
-          <UsersList />
+          <UsersList mode={mode} theme={theme} />
         </Box>
       </ThemeProvider>
     </Fragment>

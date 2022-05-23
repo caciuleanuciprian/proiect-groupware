@@ -22,3 +22,14 @@
   width: 100vw;
   height: 100vh;
 }
+
+@media only screen and (max-width: 540px) {
+  .logo {
+    width: 250px;
+    margin-bottom: -20px;
+  }
+  .container {
+    width: 90vw;
+    margin: 0 auto;
+  }
+}

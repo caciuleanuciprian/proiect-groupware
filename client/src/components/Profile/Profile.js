@@ -12,6 +12,8 @@ import axios from "axios";
 import FileUpload from "./FileUpload";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
+import styles from "./Profile.module.css";
+
 import { getDesignTokens } from "../../utils/theme";
 
 const Profile = (props) => {
@@ -56,7 +58,7 @@ const Profile = (props) => {
         <Box
           sx={{
             width: "100vw",
-            height: "100vh",
+            minHeight: "100vh",
             bgcolor: theme.palette.background,
           }}
         >
@@ -64,6 +66,7 @@ const Profile = (props) => {
           <Container
             minWidth="600px"
             minHeight="600px"
+            className={styles.container}
             sx={{
               display: "flex",
               justifyContent: "center",
@@ -77,6 +80,7 @@ const Profile = (props) => {
               width="50%"
               height="100%"
               minHeight="250px"
+              className={styles.box}
               sx={{
                 display: "flex",
                 flexDirection: "column",
@@ -90,6 +94,7 @@ const Profile = (props) => {
               <FileUpload />
             </Box>
             <Box
+              className={styles.box}
               padding="10px"
               width="50%"
               height="50%"
